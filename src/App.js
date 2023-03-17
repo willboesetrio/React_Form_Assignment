@@ -13,18 +13,17 @@ function App() {
   let [formSubmitted, setFormSubmitted] = useState(false);
 
   function handleSubmit(event) {
-    //event.preventDefault();
+    event.preventDefault();
     setFormSubmitted(true);
 
     const enteredName = nameInputRef.current.value;
-    if(enteredName.length < 3){setNameError(true); event.preventDefault()}else(setNameError(false));
+    if(enteredName.length < 3){setNameError(true)}else(setNameError(false));
 
     const enteredEmail = emailInputRef.current.value;
    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(enteredEmail)){
     setEmailError(false)
    }else{
     setEmailError(true);
-    event.preventDefault();
    }
 
    const enteredZip = zipInputRef.current.value;
@@ -32,8 +31,12 @@ function App() {
     setZipError(false)
    }else{
     setZipError(true);
-    event.preventDefault();
    }
+
+  nameInputRef.current.value = ''
+  emailInputRef.current.value = ''
+  zipInputRef.current.value = ''
+
 
   }
 
